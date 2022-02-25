@@ -10,14 +10,14 @@ public class Database {
     private static Connection connection = null;
 
     //Obtem a conexão
-    public static Connection getConnection(){
-        if(connection == null){
-            try{
+    public static Connection getConnection() {
+        if (connection == null) {
+            try {
                 Properties props = loadProperties();
                 String url = props.getProperty("dburl");
 
-                connection = DriverManager.getConnection(url,props);
-            }catch (SQLException e){
+                connection = DriverManager.getConnection(url, props);
+            } catch (SQLException e) {
                 throw new DbException(e.getMessage());
             }
         }
@@ -25,43 +25,43 @@ public class Database {
     }
 
     //Fecha a conexão
-    public static void closeConnection(){
-        if(connection != null){
-            try{
+    public static void closeConnection() {
+        if (connection != null) {
+            try {
                 connection.close();
-            }catch (SQLException e){
+            } catch (SQLException e) {
                 throw new DbException(e.getMessage());
             }
         }
     }
 
     //Realiza o carregamento dos dados de conexão com o banco através do arquivo db.properties
-    private static Properties loadProperties(){
-        try(FileInputStream fs = new FileInputStream("db.properties")){
+    private static Properties loadProperties() {
+        try (FileInputStream fs = new FileInputStream("db.properties")) {
             Properties props = new Properties();
             props.load(fs);
             return props;
-        }catch(IOException e){
+        } catch (IOException e) {
             throw new DbException(e.getMessage());
         }
     }
 
-    public static void closeStatment(Statement st){
-        if(st != null){
-            try{
+    public static void closeStatment(Statement st) {
+        if (st != null) {
+            try {
                 st.close();
-            }catch(SQLException e){
+            } catch (SQLException e) {
                 throw new DbException(e.getMessage());
             }
 
         }
     }
 
-    public static void closeResultSet(ResultSet rs){
-        if(rs != null){
-            try{
+    public static void closeResultSet(ResultSet rs) {
+        if (rs != null) {
+            try {
                 rs.close();
-            }catch(SQLException e){
+            } catch (SQLException e) {
                 throw new DbException(e.getMessage());
             }
 
