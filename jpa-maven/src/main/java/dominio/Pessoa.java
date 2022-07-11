@@ -18,6 +18,8 @@ public class Pessoa implements Serializable {
     private String name;
     private String email;
 
+    public Pessoa(){}
+
     public Pessoa(Integer id, String name, String email) {
         this.id = id;
         this.name = name;
